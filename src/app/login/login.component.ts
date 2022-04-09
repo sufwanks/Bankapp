@@ -31,47 +31,49 @@ export class LoginComponent implements OnInit {
   pswdChange(event:any){
     this.pswd=event.target.value;    
   }
-// event binding
-  // login(){
+// event binding  || two way binding(NgModel)
+  login(){
 
-  //   var acno= this.acno;
-  //   var pswd=this.pswd;
+    var acno= this.acno;
+    var pswd=this.pswd;
 
-  //   let dataBase=this.dataBase;
+    let dataBase=this.dataBase;
      
-  //   if(acno in dataBase){
-  //     if(pswd== dataBase[acno]["password"]){
-  //       alert("access granted")
-  //     }
-  //     else{
-  //       alert("invalid password")
-  //     }
-  //   }
-  //   else{
-  //     alert("invalid account number")
-  //   }
-
-  // }
-// template referance variable
-login(a:any,p:any){
-
-  var acno= a.value;
-  var pswd=p.value;
-
-  let dataBase=this.dataBase;
-   
-  if(acno in dataBase){
-    if(pswd== dataBase[acno]["password"]){
-      alert("access granted")
+    if(acno in dataBase){
+      if(pswd== dataBase[acno]["password"]){
+        alert("access granted")
+      }
+      else{
+        alert("invalid password")
+      }
     }
     else{
-      alert("invalid password")
+      alert("invalid account number")
     }
-  }
-  else{
-    alert("invalid account number")
+
   }
 
-}
+
+// template referance variable
+// login(a:any,p:any){
+
+//   var acno= a.value;
+//   var pswd=p.value;
+
+//   let dataBase=this.dataBase;
+   
+//   if(acno in dataBase){
+//     if(pswd== dataBase[acno]["password"]){
+//       alert("access granted")
+//     }
+//     else{
+//       alert("invalid password")
+//     }
+//   }
+//   else{
+//     alert("invalid account number")
+//   }
+
+// }
 
 }
