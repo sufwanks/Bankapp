@@ -14,15 +14,7 @@ export class LoginComponent implements OnInit {
   acno="";
   pswd="";
 
-  dataBase:any={
-    1000:{acno:1000,uname:"kabil",password:1000,balance:5000},
-    1001:{acno:1001,uname:"neer",password:1001,balance:6000},
-    1002:{acno:1002,uname:"neelam",password:1002,balance:8000},
-    1003:{acno:1003,uname:"Moin",password:1003,balance:4000}
-  }
-
-
-  constructor(private router:Router) { }
+  constructor(private router:Router, private ds:DatasService) { }
 
   ngOnInit(): void {
   }
@@ -39,20 +31,23 @@ export class LoginComponent implements OnInit {
     var acno= this.acno;
     var pswd=this.pswd;
 
-    let dataBase=this.dataBase;
+    const result = this.ds.login(acno,pswd)
+    if (result){
+      this.router.navigateByUrl("dashboard")
+    }
      
-    if(acno in dataBase){
-      if(pswd== dataBase[acno]["password"]){
-        alert("access granted")
-        this.router.navigateByUrl("dashboard")
-      }
-      else{
-        alert("invalid password")
-      }
-    }
-    else{
-      alert("invalid account number")
-    }
+    // if(acno in dataBase){
+    //   if(pswd== dataBase[acno]["password"]){
+    //     alert("access granted")
+    //     this.router.navigateByUrl("dashboard")
+    //   }
+    //   else{
+    //     alert("invalid password")
+    //   }
+    // }
+    // else{
+    //   alert("invalid account number")
+    // }
 
   }
 

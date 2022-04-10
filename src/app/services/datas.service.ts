@@ -35,4 +35,47 @@ export class DatasService {
     }
   }
 
+  login(acno:any,pswd:any){
+
+    
+
+    let dataBase=this.dataBase;
+     
+    if(acno in dataBase){
+      if(pswd== dataBase[acno]["password"]){
+        alert("access granted")
+        // already exist in dataBase
+        return true;
+        
+      }
+      else{
+        alert("invalid password")
+        return false;
+      }
+    }
+    else{
+      alert("invalid account number")
+      return false;
+    }
+
+  }
+
+  deposit(dAcno:any,dPswd:any,dAmount:any){
+    let dataBase=this.dataBase;
+
+    if(dAcno in dataBase){
+      if(dPswd == dataBase[dAcno]["password"]){
+        dataBase[dAcno]["balance"]+=dAmount
+        return dataBase[dAcno]["balance"]
+      }
+      else{
+        alert("invalid password")
+      }
+    }
+    else{
+      alert("user doesnt exist")
+      return false
+    }
+  }
+
 }

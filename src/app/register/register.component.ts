@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   pswd=""
 
 
-  constructor(private db:DatasService,private router:Router) { }
+  constructor(private ds:DatasService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     var acno=this.acno;
     var pswd=this.pswd;
 
-    const result=this.db.register(uname,acno,pswd)
+    const result=this.ds.register(uname,acno,pswd)
 
     if(result){
       alert("successfully registered")
