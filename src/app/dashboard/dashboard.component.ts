@@ -41,6 +41,20 @@ export class DashboardComponent implements OnInit {
   }
 
   withdraw(){
-    alert("withdraw button clicked")
+    var wAcno=this.wAcno;
+    var wPswd=this.wPswd;
+    var wAmount=this.wAmount
+    var widrwAmount=parseInt(wAmount)
+
+    const result=this.ds.withdraw(wAcno,wPswd,widrwAmount)
+
+    if(result){
+      alert(`${widrwAmount} debited. Available balance is ${result}`)
+      return true
+    }
+    else{
+      alert("transaction failed")
+      return false
+    }
   }
 }

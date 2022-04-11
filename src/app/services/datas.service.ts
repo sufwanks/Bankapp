@@ -78,4 +78,28 @@ export class DatasService {
     }
   }
 
+  withdraw(wAcno:any,wPswd:any,wAmount:any){
+    let dataBase=this.dataBase;
+
+    if(wAcno in dataBase){
+      if(wPswd == dataBase[wAcno]["password"]){
+        if(dataBase[wAcno]["balance"]>wAmount){
+          dataBase[wAcno]["balance"]-=wAmount
+          return dataBase[wAcno]["balance"]
+        }
+        else{
+          alert("insufficient balance")
+        }
+      
+      }
+      else{
+        alert("invalid password")
+      }
+    }
+    else{
+      alert("user doesnt exist")
+      return false
+    }
+  }
+
 }

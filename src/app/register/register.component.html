@@ -13,26 +13,26 @@
                   
               </div>
               <div class="card-body">
-                  <form (ngSubmit)="register()">
+                  <form formBuilder="registerForm()" (ngSubmit)="register()">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" name="uname" [(ngModel)]="uname" class="form-control" placeholder="Enter user name" id="login_uname" required>
+                        <input type="text" name="uname" formControlName="uname" class="form-control" placeholder="Enter user name" id="login_uname" required>
                         
                     </div>
                       <div class="input-group form-group">
                           <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-user"></i></span>
                           </div>
-                          <input type="text" name="acno" [(ngModel)]="acno" class="form-control" placeholder="Enter Account number" id="login_accno" required>
+                          <input type="text" name="acno" formControlName="acno" class="form-control" placeholder="Enter Account number" id="login_accno" required>
                           
                       </div>
                       <div class="input-group form-group">
                           <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-key"></i></span>
                           </div>
-                          <input type="password" [(ngModel)]="pswd" name="pswd" class="form-control" placeholder="Password" id="login_password" required>
+                          <input type="password" formControlName="pswd" name="pswd" class="form-control" placeholder="Password" id="login_password" required>
                       </div>
                       
                       <div class="form-group">
