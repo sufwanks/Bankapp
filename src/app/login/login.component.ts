@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatasService } from '../services/datas.service';
 
@@ -14,7 +15,12 @@ export class LoginComponent implements OnInit {
   acno="";
   pswd="";
 
-  constructor(private router:Router, private ds:DatasService) { }
+  loginForm = this.fb.group({
+    acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    pswd:['',[Validators.required,Validators.pattern('[0-9]*')]]
+  })
+
+  constructor(private router:Router, private ds:DatasService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -28,8 +34,8 @@ export class LoginComponent implements OnInit {
 // event binding  || two way binding(NgModel)
   login(){
 
-    var acno= this.acno;
-    var pswd=this.pswd;
+    var acno= this.loginForm.value.acno
+    var pswd=this.loginForm.value.pswd
 
     const result = this.ds.login(acno,pswd)
     if (result){

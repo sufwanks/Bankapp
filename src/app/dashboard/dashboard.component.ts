@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { DatasService } from '../services/datas.service';
 
 @Component({
@@ -8,24 +9,36 @@ import { DatasService } from '../services/datas.service';
 })
 export class DashboardComponent implements OnInit {
 
-  dAcno="";
-  dPswd="";
-  dAmount="";
+  // dAcno="";
+  // dPswd="";
+  // dAmount="";
 
-  wAcno="";
-  wPswd="";
-  wAmount="";
+  // wAcno="";
+  // wPswd="";
+  // wAmount="";
 
-  constructor(private ds:DatasService) { }
+  depositForm = this.fb.group({
+    dAcno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    dPswd:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    dAmount:['',[Validators.required,Validators.pattern('[0-9]*')]]
+  })
+
+  withdrawForm = this.fb.group({
+    wAcno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    wPswd:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    wAmount:['',[Validators.required,Validators.pattern('[0-9]*')]]
+  })
+
+  constructor(private ds:DatasService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
 
   deposit(){
 
-    var dAcno=this.dAcno;
-    var dPswd=this.dPswd;
-    var dAmount=this.dAmount
+    var dAcno=this.depositForm.value.dAcno;
+    var dPswd=this.depositForm.value.dPswd;
+    var dAmount=this.depositForm.value.dAmount
     var depAmount=parseInt(dAmount)
 
     const result=this.ds.deposit(dAcno,dPswd,depAmount)
@@ -41,9 +54,9 @@ export class DashboardComponent implements OnInit {
   }
 
   withdraw(){
-    var wAcno=this.wAcno;
-    var wPswd=this.wPswd;
-    var wAmount=this.wAmount
+    var wAcno=this.withdrawForm.value.wAcno;
+    var wPswd=this.withdrawForm.value.wPswd;
+    var wAmount=this.withdrawForm.value.wAmount
     var widrwAmount=parseInt(wAmount)
 
     const result=this.ds.withdraw(wAcno,wPswd,widrwAmount)
