@@ -1,6 +1,7 @@
 <nav class="navbar navbar-light bg-dark " >
     <a class="navbar-brand  " href="#" style="color:rgb(85, 98, 237);"><b>&#169; HAFC Bank Pvt.Ltd </b></a>
-    <span class="quote text-light">Giving you freedom...</span>
+    <span class="quote text-light">Welcome {{user}} </span>
+    <button class="btn btn-warning" (click)="logout()">LogOut</button>
     
   </nav>
   
@@ -50,7 +51,9 @@
 
 
 <div class="row mt-5">
+    
     <div class="container col-md-6 mt-0">      
+        
         <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
@@ -147,6 +150,18 @@
         </div>
     </div>
 </div>
+
+</div>
+
+<div class="row mt-5">
+   <div class="container">
+    <div class="col-4">
+        <h4><a routerLink="/transactions" style="color: white;">Transactions History</a></h4>
+
+    </div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+   </div>
 </div>
   
 

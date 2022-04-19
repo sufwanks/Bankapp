@@ -11,7 +11,7 @@ import { DatasService } from '../services/datas.service';
 export class LoginComponent implements OnInit {
 
   aim="Your perfect banking partner";
-  accnum="Enter your account number";
+  
   acno="";
   pswd="";
 

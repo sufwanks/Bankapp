@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DatasService } from '../services/datas.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { DatasService } from '../services/datas.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  user:any
 
   // dAcno="";
   // dPswd="";
@@ -29,9 +32,15 @@ export class DashboardComponent implements OnInit {
     wAmount:['',[Validators.required,Validators.pattern('[0-9]*')]]
   })
 
-  constructor(private ds:DatasService, private fb:FormBuilder) { }
+  constructor(private ds:DatasService, private fb:FormBuilder, private router:Router) { 
+    this.user=this.ds.currentUser
+  }
 
   ngOnInit(): void {
+    if(!localStorage.getItem("currentAcno")){
+      alert("please log in")
+      this.router.navigateByUrl("")
+    }
   }
 
   deposit(){
@@ -69,5 +78,11 @@ export class DashboardComponent implements OnInit {
       alert("transaction failed")
       return false
     }
+  }
+
+  logout(){
+    localStorage.removeItem("currentUser")
+    localStorage.removeItem("currentAcno")
+    this.router.navigateByUrl("")
   }
 }
