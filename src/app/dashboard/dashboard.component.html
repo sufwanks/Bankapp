@@ -1,7 +1,12 @@
 <nav class="navbar navbar-light bg-dark " >
     <a class="navbar-brand  " href="#" style="color:rgb(85, 98, 237);"><b>&#169; HAFC Bank Pvt.Ltd </b></a>
-    <span class="quote text-light">Welcome {{user}} </span>
-    <button class="btn btn-warning" (click)="logout()">LogOut</button>
+    
+    <h5 class="quote text-light">{{loginDate | date:'fullDate'}}</h5>
+    
+    <span class="quote text-light">
+        <button class="btn btn-warning" (click)="logout()">LogOut</button>
+        Welcome {{user}} 
+    </span>
     
   </nav>
   
@@ -51,13 +56,13 @@
 
 
 <div class="row mt-5">
-    
+    <!-- <appHighlight></appHighlight> -->
     <div class="container col-md-6 mt-0">      
         
         <div class="d-flex justify-content-center h-100">
-        <div class="card">
+        <div [ngClass]="acno? 'style' : '' " class="card">
             <div class="card-header">
-                <h3 class="text-center">Deposit</h3>
+                <h3 appHighlight class="text-center">Deposit</h3>
                 
             </div>
             <div class="card-body">
@@ -104,9 +109,9 @@
 
 <div class="container col-md-6 mt-0">      
     <div class="d-flex justify-content-center h-100">
-        <div class="card">
+        <div [ngClass]="acno? 'style' : '' " class="card">
             <div class="card-header">
-                <h3 class="text-center">Withdraw</h3>
+                <h3 appHighlight class="text-center">Withdraw</h3>
                 
             </div>
             <div class="card-body">
@@ -157,11 +162,22 @@
    <div class="container">
     <div class="col-4">
         <h4><a routerLink="/transactions" style="color: white;">Transactions History</a></h4>
-
+        <app-animation></app-animation>
     </div>
     <div class="col-4"></div>
-    <div class="col-4"></div>
+   
    </div>
+</div>
+<app-delete></app-delete>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-8">
+            <button class="btn btn-danger" (click)="deleteFromParent()" style="float: right;">Delete</button>
+                <app-delete (onDelete)="onDelete($event)" (onCancel)="onCancel()" [item]=acno></app-delete>
+        </div>
+    </div>
 </div>
   
 

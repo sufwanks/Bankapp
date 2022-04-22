@@ -10,8 +10,9 @@ import { DatasService } from '../services/datas.service';
 })
 export class DashboardComponent implements OnInit {
 
+  loginDate:any
   user:any
-
+  acno:any
   // dAcno="";
   // dPswd="";
   // dAmount="";
@@ -34,6 +35,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private ds:DatasService, private fb:FormBuilder, private router:Router) { 
     this.user=this.ds.currentUser
+    this.loginDate = new Date()
   }
 
   ngOnInit(): void {
@@ -80,9 +82,25 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  deleteFromParent(){
+    this.acno= JSON.parse(localStorage.getItem("currentAcno")||'')
+  }
+
+  
+
   logout(){
     localStorage.removeItem("currentUser")
     localStorage.removeItem("currentAcno")
     this.router.navigateByUrl("")
   }
+
+  onCancel(){
+    this.acno=""
+  }
+
+  onDelete(event:any){
+    alert("delete account "+event)
+  }
+
+
 }
